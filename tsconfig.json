@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "lib": ["es2017"],
+    "allowJs": false,
+    "strict": false,
+    "strictPropertyInitialization": false,
+    "baseUrl": "./",
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "types": ["node"],
+    "typeRoots": ["src/helper/typings"],
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "downlevelIteration": true
+  },
+  "files": ["src/types/global.d.ts"],
+  "include": ["src/**/*.ts", "src/helper/typings/*.ts", "*.ts", "test/**/*.ts"],
+  "exclude": ["node_modules/"],
+  "ts-node": {
+    "files": true
+  }
+}
