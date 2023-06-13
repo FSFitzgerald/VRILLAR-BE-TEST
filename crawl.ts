@@ -61,8 +61,8 @@ const main = async () => {
             .innerText.replace("\n", "")
             .trimStart()
             .trimEnd(),
-          DATE: tr.querySelector(".dark .hide-for-mobile")?.innerText,
-          WINNER: tr.querySelector(".hide-for-mobile")?.innerText,
+          DATE: tr.querySelector(".hide-for-mobile")?.innerText,
+          WINNER: tr.querySelector(".dark .hide-for-mobile")?.innerText,
           CAR: tr.querySelector(".semi-bold")?.innerText,
           LAPS: parseInt(tr.getElementsByTagName("td")[5]?.innerText || "0"),
           TIME: tr.querySelectorAll("td")[6].innerText,
@@ -100,9 +100,9 @@ const main = async () => {
       });
     });
 
-  await Promise.all(driversDataPromises);
+  // await Promise.all(driversDataPromises);
   // console.log(driversData);
-  fs.writeFileSync('drivers.json', JSON.stringify(driversData))
+  // fs.writeFileSync('drivers.json', JSON.stringify(driversData))
 
   //crawl team data
   const teamsData: ITeamResult[] = [];
@@ -126,9 +126,9 @@ const main = async () => {
       });
     });
 
-  await Promise.all(teamsDataPromises);
+  // await Promise.all(teamsDataPromises);
   // console.log(teamsData);
-  fs.writeFileSync('teams.json', JSON.stringify(teamsData))
+  // fs.writeFileSync('teams.json', JSON.stringify(teamsData))
 };
 
 main();
