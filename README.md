@@ -10,15 +10,15 @@ This project is about a REST API that displays content crawled from the F1 racin
 
 # Demo
 
- - Races search api
+ - Races search api (http://localhost:3000/races)
 
  ![alt text](https://github.com/FSFitzgerald/VRILLAR-BE-TEST/blob/feature/readme-intro/images/races-demo.png)
 
-  - Drivers search api
+  - Drivers search api (http://localhost:3000/drivers)
  
  ![alt text](https://github.com/FSFitzgerald/VRILLAR-BE-TEST/blob/feature/readme-intro/images/drivers-demo.png)
 
-  - Teams search api
+  - Teams search api (http://localhost:3000/teams)
  
  ![alt text](https://github.com/FSFitzgerald/VRILLAR-BE-TEST/blob/feature/readme-intro/images/teams-demo.png)
 
