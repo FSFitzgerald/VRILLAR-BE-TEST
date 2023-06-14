@@ -7,7 +7,8 @@ import { DriverModel } from "./mongo/model/driver";
 import { TeamModel } from "./mongo/model/team";
 import fs from "fs";
 import express from "express";
-import validateCtrl, { Joi } from "./helpers/validateCtrl";
+import router from './router'
+import { errorHandleMiddleware } from './middlewares/errorHandleMiddleware'
 
 async function main() {
   initIoC();
@@ -21,98 +22,10 @@ async function main() {
 
   const app = express();
   app.use(express.json());
+  app.use(errorHandleMiddleware())
   app.listen(3000, () => {
     console.log("listening on port 3000");
-  });
-
-  const router = express.Router();
-  router.get("/races", async (req, res, next) => {
-    const validatedReq = validateCtrl(
-      req,
-      Joi.object({
-        body: Joi.object({
-          YEAR: Joi.number().required(),
-          GRAND_PRIX: Joi.string(),
-          WINNER: Joi.string(),
-          CAR: Joi.string()
-        }),
-      })
-    );
-    const { YEAR, GRAND_PRIX, WINNER, CAR } = validatedReq.body;
-    const filter: any = {};
-    if (YEAR !== undefined) {
-      filter["YEAR"] = YEAR;
-    }
-    if(GRAND_PRIX) {
-      filter['GRAND_PRIX'] = { $regex: '.*' + GRAND_PRIX + '.*' }
-    }
-    if(WINNER) {
-      filter['WINNER'] = { $regex: '.*' + WINNER + '.*' }
-    }
-    if(CAR) {
-      filter['CAR'] = { $regex: '.*' + CAR + '.*' }
-    }
-    const races = await RaceModel.find(filter).lean();
-    return res.json(races);
-  });
-  router.get("/drivers", async (req, res, next) => {
-    const validatedReq = validateCtrl(
-      req,
-      Joi.object({
-        body: Joi.object({
-          YEAR: Joi.number().required(),
-          DRIVER: Joi.string(),
-          NATIONALITY: Joi.string(),
-          CAR: Joi.string()
-        }),
-      })
-    );
-    const { YEAR, DRIVER, NATIONALITY, CAR } = validatedReq.body;
-    const filter: any = {};
-    if (YEAR !== undefined) {
-      filter["YEAR"] = YEAR;
-    }
-    if(DRIVER) {
-      filter['DRIVER'] = { $regex: '.*' + DRIVER + '.*' }
-    }
-    if(NATIONALITY) {
-      filter['NATIONALITY'] = { $regex: '.*' + NATIONALITY + '.*' }
-    }
-    if(CAR) {
-      filter['CAR'] = { $regex: '.*' + CAR + '.*' }
-    }
-    const drivers = await DriverModel.find(filter)
-      .sort({
-        POS: 1,
-      })
-      .lean();
-    return res.json(drivers);
-  });
-  router.get('/teams', async (req, res, next) => {
-    const validatedReq = validateCtrl(
-      req,
-      Joi.object({
-        body: Joi.object({
-          YEAR: Joi.number().required(),
-          TEAM: Joi.string()
-        }),
-      })
-    );
-    const { YEAR , TEAM} = validatedReq.body;
-    const filter: any = {};
-    if (YEAR !== undefined) {
-      filter["YEAR"] = YEAR;
-    }
-    if(TEAM) {
-      filter['TEAM'] = { $regex: '.*' + TEAM + '.*' }
-    }
-    const teams = await TeamModel.find(filter)
-      .sort({
-        POS: 1,
-      })
-      .lean();
-    return res.json(teams);
-  })
+  });  
 
   app.use(router);
 }
