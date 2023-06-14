@@ -1,6 +1,6 @@
 # Introduction 
 
-This project is about a REST API that displays content crawled from the F1 racing results at RACE RESULTS [a link](http://formula1.com/)
+This project is about a REST API that displays content crawled from the F1 racing results at RACE RESULTS [formula1.com](http://formula1.com/)
 
 # Technology in project
 
@@ -12,15 +12,15 @@ This project is about a REST API that displays content crawled from the F1 racin
 
  - Races search api
 
- ![alt text](http://url/to/img.png)
+ ![alt text](https://github.com/FSFitzgerald/VRILLAR-BE-TEST/blob/feature/readme-intro/images/races-demo.png)
 
   - Drivers search api
  
- ![alt text](http://url/to/img.png)
+ ![alt text](https://github.com/FSFitzgerald/VRILLAR-BE-TEST/blob/feature/readme-intro/images/drivers-demo.png)
 
   - Teams search api
  
- ![alt text](http://url/to/img.png)
+ ![alt text](https://github.com/FSFitzgerald/VRILLAR-BE-TEST/blob/feature/readme-intro/images/teams-demo.png)
 
 # Setup
 
